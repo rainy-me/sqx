@@ -5,8 +5,8 @@
             <th v-for="field in table.fields" :key="field">{{ field }}</th>
         </thead>
         <tbody v-if="table.results">
-            <tr v-for="(row,i) in table.results" :key="`row-${i}`">
-                <td v-for="cell in row" :key="cell">{{ cell }}</td>
+            <tr v-for="(_,i) in table.fields" :key="`row-${i}`">
+                <td v-for="cell in table.results[i]" :key="`cell-${i}`">{{ cell ?? "null" }}</td>
             </tr>
         </tbody>
     </table>

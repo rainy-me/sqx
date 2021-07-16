@@ -6,7 +6,10 @@ import { buildWorker } from "./buildWorker";
 // https://vitejs.dev/config/
 export default defineConfig({
   clearScreen: false,
-  plugins: [vue(), buildWorker()],
+  plugins: [
+    vue(),
+    // buildWorker()
+  ],
   resolve: {
     alias: {
       sqx: path.resolve(__dirname, ".."),
