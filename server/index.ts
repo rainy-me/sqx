@@ -2,15 +2,27 @@ import fastify from "fastify";
 import fastifyWebsocket from "fastify-websocket";
 import { socket } from "./socket";
 
-const server = fastify();
+export type ServerConfig = {
+  port: number;
+  databaseURL?: number;
+};
 
-server.register(fastifyWebsocket);
+export function start(config: ServerConfig) {
+  const server = fastify();
 
-server.get("/api/ws", { websocket: true }, socket.handle);
+  server.register(fastifyWebsocket);
 
-server.listen(4000, (err) => {
-  if (err) {
-    server.log.error(err);
-    process.exit(1);
-  }
-});
+  server.get("/api/ws", { websocket: true }, socket.handle);
+
+  server.listen(config.port, (err) => {
+    console.log(`start server on ${config.port}`);
+    if (err) {
+      server.log.error(err);
+      process.exit(1);
+    }
+  });
+}
+
+if (!__filename.includes("cli")) {
+  start({ port: 4000 });
+}

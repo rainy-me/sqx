@@ -6,12 +6,14 @@
   "scripts": {
     "dev": "concurrently \"yarn dev:client\" \"yarn dev:server\"",
     "dev:client": "vite client",
-    "dev:server": "node server/dev.js",
+    "dev:server": "node script/build.js --watch --entry server/index.ts --out dist/server.js",
+    "dev:cli": "node script/build.js --run --entry cli/index.ts --out dist/cli.js -",
     "build": "vue-tsc --noEmit && vite build client",
     "serve": "vite preview"
   },
   "dependencies": {
     "@sqltools/formatter": "^1.2.3",
+    "cac": "^6.7.3",
     "connection-string": "^4.3.4",
     "fastify": "^3.19.1",
     "fastify-static": "^4.2.2",
