@@ -9,6 +9,14 @@
     "dist",
     "package.json"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rainy-me/sqx.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rainy-me/sqx/issues"
+  },
+  "homepage": "https://github.com/rainy-me/sqx#readme",
   "scripts": {
     "dev": "concurrently \"yarn dev:client\" \"yarn dev:server\"",
     "dev:client": "vite client",
@@ -17,7 +25,8 @@
     "clean": "rm -rf ./dist",
     "build": "yarn clean && yarn build:cli && vite build client",
     "build:cli": "node script/build.js --entry cli/index.ts --out dist/cli.js",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "prepublishOnly": "yarn build"
   },
   "devDependencies": {
     "@sqltools/formatter": "^1.2.3",
