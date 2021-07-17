@@ -1,7 +1,6 @@
 import { defineConfig } from "vite";
 import path from "path";
 import vue from "@vitejs/plugin-vue";
-import { buildWorker } from "./buildWorker";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,10 +9,7 @@ export default defineConfig({
     emptyOutDir: true,
     outDir: path.resolve(__dirname, "../dist/client"),
   },
-  plugins: [
-    vue(),
-    // buildWorker()
-  ],
+  plugins: [vue()],
   resolve: {
     alias: {
       sqx: path.resolve(__dirname, ".."),
