@@ -24,10 +24,10 @@ export const socket = {
       },
     });
 
-    connection.socket.on("message", (message: string) => {
+    connection.socket.on("message", async (message: string) => {
       const ctsMessage = JSON.parse(message) as CTSMessage;
       try {
-        handlers.get(ctsMessage.type)?.(ctsMessage.payload as any);
+        await handlers.get(ctsMessage.type)?.(ctsMessage.payload as any);
       } catch (error) {
         send({ type: "error", payload: error });
       }

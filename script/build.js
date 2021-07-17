@@ -11,14 +11,12 @@ cli
   .option("--entry <entry>", "")
   .option("--out <outfile>", "outfile")
   .option("--run", "run the built file")
-  .option("--watch", "watch build and run")
-  .option("--build", "build only");
+  .option("--watch", "watch build and run");
 
 /**
  * @typedef BuildServiceOptions
  * @property {Boolean} run
  * @property {Boolean} watch
- * @property {Boolean} build
  * @property {string} entry
  * @property {string} out
  */
@@ -92,7 +90,8 @@ function buildWith(config) {
  */
 const buildService = {
   async build(config) {
-    buildWith(config);
+    await buildWith(config);
+    process.exit();
   },
   async run(config) {
     await buildWith(config).then(run);
@@ -116,10 +115,10 @@ const buildService = {
   },
 };
 
-if (flags.build) {
-  buildService.build();
-} else if (flags.run) {
+if (flags.run) {
   buildService.run();
 } else if (flags.watch) {
   buildService.watch();
+} else {
+  buildService.build();
 }
