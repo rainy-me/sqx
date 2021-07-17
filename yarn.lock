@@ -993,10 +993,15 @@ minimist@^1.2.0, minimist@^1.2.5:
   dependencies:
     minimist "^1.2.5"
 
-monaco-editor@^0.26.0:
+monaco-editor-core@^0.26.0:
   version "0.26.0"
-  resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.26.0.tgz#6c1141dc10edb58a9c089d83efdac339f2c65c88"
-  integrity sha512-Ce1Zs/dPCFv+FQ7x9BIKNRN8ytsj8IyompD3zaENnb8h8W8HMaW/RIw723WOs27ZTLsESiFAQfHrhZs+zDyO3w==
+  resolved "https://registry.yarnpkg.com/monaco-editor-core/-/monaco-editor-core-0.26.0.tgz#60f2b7673710a383c877b43a587fd25b7a6e440a"
+  integrity sha512-qtZQdVUk2HeE2IMBTfBV+UNT1vNWEJ2nenfsi9pQSN/HWrUNAcpsVtaPjklUwjxw/QfuziG+h/QkL1L91S8tfg==
+
+monaco-languages@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/monaco-languages/-/monaco-languages-2.6.0.tgz#87b519b004cde7214265ae5935e42fa125217c3f"
+  integrity sha512-ZLkcX7zrY4dXs+UQ5G9nXXfNIrOSA36MySywdEeM5oh2zvXTCWmWUeWTpKSK9Gr8p+aXWdBRJkW+zrne3w+Osw==
 
 ms@2.0.0:
   version "2.0.0"

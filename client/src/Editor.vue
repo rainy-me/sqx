@@ -6,11 +6,10 @@
 import { defineComponent, ref, onMounted, onUnmounted } from "vue";
 import sqlFormatter from '@sqltools/formatter';
 import debounce from 'lodash.debounce';
-import * as monaco from 'monaco-editor'
+import * as monaco from 'monaco-editor-core'
+import 'monaco-languages/release/esm/sql/sql.contribution'
 // @ts-ignore
-import EditorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
-// // @ts-ignore
-// import SqlWorker from 'monaco-editor/esm/vs/basic-languages/sql/sql.worker?worker'
+import EditorWorker from 'monaco-editor-core/esm/vs/editor/editor.worker?worker'
 import { socket } from "./socket";
 
 // @ts-ignore
