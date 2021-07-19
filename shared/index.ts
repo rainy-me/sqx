@@ -7,6 +7,7 @@ export type Handler<T extends object> = {
 };
 
 export type CTSEvent = {
+  ping: string;
   query: string;
   config: string;
 };
@@ -15,6 +16,7 @@ export type STCEvent = {
   error: Result<any>;
   queryResult: Result<any>;
   configResult: Result<string>;
+  samples: Result<any>;
 };
 
 export type CTSEventName = keyof CTSEvent;

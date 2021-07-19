@@ -1,36 +1,20 @@
-<template>  
-  
-  
-  
-  
-  <input class="url" type="text" v-model="databaeURL" />
-  <Editor />
-  <QueryResult />
-
-
-
-
+<template>
+  <main>
+    <div class="ops">
+      <Info />
+      <Editor />
+      <QueryResult />
+    </div>
+    <SampleResult />
+  </main>
 </template>
 <script setup lang="ts">
 import { watch } from 'vue';
 import { ref, onMounted } from 'vue'
+import Info from './Info.vue'
 import Editor from './Editor.vue'
 import QueryResult from './QueryResult.vue'
-import { socket } from './socket'
-const databaeURL = ref('mysql://root:root@localhost/development');
-const updateConfig = () => socket.send({
-  type: 'config',
-  payload: databaeURL.value
-})
-
-watch(databaeURL, () => {
-  updateConfig()
-})
-socket.ready(() => {
-  updateConfig()
-})
-
-
+import SampleResult from './SampleResult.vue'
 </script>
 <style>
 #app {
@@ -41,17 +25,25 @@ socket.ready(() => {
   color: #2c3e50;
   margin-top: 60px;
 }
-.url {
-  width: 80vw;
-  text-align: left;
-  font-size: 1.4rem;
-  border: none;
-  appearance: none;
-  margin-bottom: 3rem;
+
+main {
+  margin: 1rem;
+  text-align: center;
+  display: grid;
 }
 
-.url:focus {
-  border: none;
-  appearance: none;
+@media screen and (min-width: 960px) {
+  main {
+    grid-template-columns: 60% 1fr;
+    display: grid;
+    gap: 1rem;
+  }
+}
+
+.ops {
+  display: grid;
+  height: fit-content;
+  grid-template-rows: auto;
+  gap: 2rem;
 }
 </style>

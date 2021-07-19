@@ -1,21 +1,33 @@
 <template>
-    <pre class="error">{{ queryResult.error }}</pre>
-    <Table :data="data" />
+    <table>
+        <thead v-if="data.fields">
+            <th v-for="field in data.fields" :key="field">{{ field.name }}</th>
+        </thead>
+        <tbody v-if="data.results">
+            <tr v-for="(row,i) in data.results" :key="`row-${i}`">
+                <td v-for="cell in row" :key="`cell-${i}`">{{ cell ?? "null" }}</td>
+            </tr>
+        </tbody>
+    </table>
 </template>
 <script setup lang="ts">
 import { computed, watch } from 'vue';
 import type { Result } from 'sqx/shared';
 import { ref, defineProps, reactive } from 'vue'
-import { queryResult } from './socket'
-import { extractData } from './utils'
-import Table from './Table.vue'
 
-const data = computed(() => extractData(queryResult.value))
+const props = defineProps<{
+    data: {
+        fields: string[],
+        results: any[][]
+    }
+}>()
+
 </script>
 
 <style scoped>
 .error {
     margin: 0 0;
+    width: 100%;
     color: red;
     word-break: break-all;
     white-space: pre-line;

@@ -9,19 +9,24 @@ export const socket = {
     };
 
     const handlers = toMap<CTSHandler>({
-      config(payload) {
+      async config(payload) {
         db.connect(payload);
         send({
           type: "configResult",
           payload: { data: "ok" },
         });
+        send({
+          type: "samples",
+          payload: await db.driver!.sample(),
+        });
       },
       async query(payload) {
         send({
           type: "queryResult",
-          payload: await db.query(payload),
+          payload: await db.driver!.query(payload),
         });
       },
+      ping() {},
     });
 
     connection.socket.on("message", async (message: string) => {

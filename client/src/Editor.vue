@@ -43,6 +43,7 @@ onMounted(() => {
     editor = monaco.editor.create(root.value!, {
         language: 'sql',
         value: `SELECT 1 + 1;`,
+        automaticLayout: true,
         formatOnType: true,
         formatOnPaste: true,
     })
@@ -66,7 +67,6 @@ onUnmounted(() => {
 <style scoped>
 #root {
     text-align: left;
-    width: 100vw;
-    height: 10rem;
+    height: 20vh;
 }
 </style>

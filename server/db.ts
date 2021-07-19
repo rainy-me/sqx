@@ -4,6 +4,7 @@ import { ConnectionString } from "connection-string";
 interface Driver<P> {
   pool: P;
   query(sql: string): Promise<{ data?: any; error?: string }>;
+  sample(): Promise<any>;
 }
 
 const driver = {
@@ -18,6 +19,24 @@ const driver = {
           });
         });
       },
+      async sample() {
+        const { data } = await this.query(`
+        SELECT CONCAT('SELECT * FROM ', t.table_name, ' LIMIT 5;') as query
+        FROM information_schema.tables AS t
+        WHERE table_schema NOT IN (
+            'sys',
+            'mysql',
+            'information_schema',
+            'performance_schema'
+          );`);
+        const samples = await Promise.all(
+          data.results.map(({ query: sql }: { query: string }) => {
+            return this.query(sql);
+          })
+        );
+        // @ts-ignore
+        return { data: samples.filter(({ data }) => data) };
+      },
     };
   },
 };
@@ -27,13 +46,5 @@ export const db = {
   connect(url: string) {
     const config = new ConnectionString(url);
     db.driver = driver.mysql({ ...config, database: config.path?.[0] });
-  },
-  async query(sql: string): Promise<{ data?: any; error?: string }> {
-    try {
-      if (!db.driver) throw new Error("no database driver");
-      return db.driver.query(sql);
-    } catch (error) {
-      return { error };
-    }
   },
 };
