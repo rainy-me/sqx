@@ -1,6 +1,10 @@
 <template>
   <main>
     <div class="ops">
+      <h1>
+        <span>SQX</span>
+        <span class="dot">.</span>
+      </h1>
       <Info />
       <Editor />
       <QueryResult />
@@ -17,17 +21,15 @@ import QueryResult from './QueryResult.vue'
 import SampleResult from './SampleResult.vue'
 </script>
 <style>
-* {
-  box-sizing: border-box;
+h1 {
+  padding: 0;
+  margin: 0;
+  color: var(--sqx-text);
+  text-align: left;
 }
 
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.dot {
+  color: var(--sqx-accent);
 }
 
 main {
@@ -38,7 +40,7 @@ main {
 
 @media screen and (min-width: 960px) {
   main {
-    grid-template-columns: 60% 1fr;
+    grid-template-columns: 60% minmax(0, 1fr);
     display: grid;
     gap: 1rem;
   }
@@ -48,6 +50,6 @@ main {
   display: grid;
   height: fit-content;
   grid-template-rows: auto;
-  gap: 2rem;
+  gap: 1rem;
 }
 </style>

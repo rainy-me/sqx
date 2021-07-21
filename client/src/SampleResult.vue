@@ -1,7 +1,7 @@
 <template>
     <div class="sample">
-        <div v-for="sample in samples">
-            <h2 class="table-name">{{ sample.fields?.[0]?.table }}</h2>
+        <div class="sample-table" v-for="sample in samples">
+            <h2 class="sample-table-name">{{ sample.fields?.[0]?.table }}</h2>
             <Table :data="sample" />
         </div>
     </div>
@@ -20,9 +20,17 @@ const samples = computed(() => sampleResult.value.map(extractData))
 <style scoped>
 .sample {
     display: grid;
+    width: inherit;
+}
+
+.sample-table {
     overflow: scroll;
 }
-.table-name {
+
+.sample-table + .sample-table {
+    margin-top: 2rem;
+}
+.sample-table-name {
     text-align: left;
 }
 </style>

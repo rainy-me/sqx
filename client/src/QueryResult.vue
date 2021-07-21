@@ -16,7 +16,10 @@ const data = computed(() => extractData(queryResult.value))
 <style scoped>
 .error {
     margin: 0 0;
-    color: red;
+    color: #ec407a;
+    text-shadow: 0 0 5px #000;
+    font-size: 1rem;
+    font-weight: bold;
     word-break: break-all;
     white-space: pre-line;
     text-align: left;

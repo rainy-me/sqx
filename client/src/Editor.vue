@@ -1,5 +1,6 @@
 <template>
-    <div id="root" ref="root"></div>
+    <h2>Query:</h2>
+    <div id="editor" ref="root"></div>
 </template>
   
   <script setup lang="ts">
@@ -87,10 +88,21 @@ onMounted(() => {
     editor = monaco.editor.create(root.value!, {
         language: 'sql',
         value: `SELECT 1 + 1;`,
+        minimap: { enabled: false },
         automaticLayout: true,
         formatOnType: true,
         formatOnPaste: true,
     })
+
+    monaco.editor.defineTheme('sqx', {
+        base: 'vs-dark',
+        inherit: true,
+        rules: [],
+        colors: {
+            'editor.lineHighlightBackground': '#00000040',
+        }
+    });
+    monaco.editor.setTheme('sqx');
 
     editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S, () => {
         editor.trigger('anyString', 'editor.action.formatDocument', undefined);
@@ -112,9 +124,11 @@ onUnmounted(() => {
 </script>
   
 <style scoped>
-#root {
+#editor {
     width: 100%;
     text-align: left;
     height: 20vh;
+    border-radius: 10px;
+    overflow: hidden;
 }
 </style>

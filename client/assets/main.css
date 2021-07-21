@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: left;
+}
+
+body {
+  margin: 0;
+}
+
+html {
+  color: aliceblue;
+  --sqx-accent: #00bcd4;
+  --sqx-text: #ccc;
+  --sqx-text-2: #ccc;
+  --sqx-bg: #333;
+  background: var(--sqx-bg);
+}
+
+h1,
+h2 {
+  text-align: left;
+}

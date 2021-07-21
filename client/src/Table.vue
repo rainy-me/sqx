@@ -36,17 +36,25 @@ const props = defineProps<{
 }
 
 table {
+    width: 100%;
+    overflow: scroll;
     margin: 0 0;
     border-collapse: collapse;
     border: 1px solid #000;
 }
 tr:nth-child(2n + 1) {
     border-collapse: collapse;
-    background-color: #eee;
+    background-color: rgb(0 0 0 / 0.3);
 }
+
+th {
+    background-color: var(--sqx-accent);
+    color: #000;
+}
+
 th,
 td {
-    padding: 5px;
+    padding: 10px;
     border: 1px solid #000;
     border-collapse: collapse;
 }
